@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <title>New York Boroughs</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+        integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
+        crossorigin="anonymous">
+		
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	
+	<!--
+	<script>
+	$.getJSON( "data/schools.json", function( data ) {console.log(data);});
+	</script>
+	-->
+	
+</head>
+
+<body>
+<div class="container">
+
+    <h1>Choose a Borough</h1>
+    {% for i in borough %}
+    <p><a class="btn btn-primary btn-lg" href="{{i.name}}">{{i.name}}</a></p>
+    {% endfor %}
+		
+	{% for table in tables %}
+            {{titles[loop.index]}}
+            {{ table|safe }}
+	{% endfor %}
+	
+	<p><a href="{{ url_for('form') }}">Add a Hospital!</a></p>
+	
+	
+</div>
+</body>
+
+</html>

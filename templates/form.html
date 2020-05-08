@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <title>Add a School</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+        integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
+        crossorigin="anonymous">
+	
+</head>
+
+
+<body>
+<div class="container">
+{% block content %}
+    <h1>New School</h1>
+    <form action="" method="post" novalidate>
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.school.label }}<br>
+            {{ form.school(size=32) }}
+        </p>
+        <p>
+            {{ form.code.label }}<br>
+            {{ form.code(size=32) }}
+        </p>
+        <p>
+            {{ form.latitude.label }}<br>
+            {{ form.latitude(size=32) }}
+        </p>
+		<p>
+            {{ form.longitude.label }}<br>
+            {{ form.longitude(size=32) }}
+        </p>
+        <p>{{ form.submit() }}</p>
+    </form>
+{% endblock %}
+</div>
+</body>
+
+</html>
