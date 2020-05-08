@@ -3,7 +3,7 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="UTF-8">
-    <title>Local Schools</title>
+    <title>Hospitals</title>
 
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
     integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
@@ -30,20 +30,19 @@
 
 	//https://stackoverflow.com/questions/37023893/leaflet-js-map-is-not-showing-up
 	//INITIATES LEAFLET MAP
-	var map = L.map('map').setView([{{borough.lat}}, {{borough.long}}], 13);
+	var map = L.map('map').setView([40.723894,-73.941561], 13);
 	
 	//TILE IS REQUIRED TO FILL IN LEAFLET MAP
 	L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
 	}).addTo(map);
 	
-	<!-- L.marker(i.lat,i.long).addTo(map) -->
+	{% for i in hospitals %}
+    L.marker([{{i.lat}},{{i.long}}]).addTo(map)
+    {% endfor %}
+	
 
 </script>
-
-<!-- <div class="container"> -->
-    <!-- <h1>{{school.name}} School</h1> -->
-<!-- </div> -->
 
 </body>
 
