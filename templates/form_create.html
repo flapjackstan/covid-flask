@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
+
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="UTF-8">
-    <title>Add a School</title>
+
+    <title>Add a Patient</title>
+    
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
         integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
         crossorigin="anonymous">
@@ -14,16 +17,20 @@
 <body>
 <div class="container">
 {% block content %}
-    <h1>New School</h1>
+    <h1>New Patient</h1>
     <form action="" method="post" novalidate>
         {{ form.hidden_tag() }}
         <p>
-            {{ form.school.label }}<br>
-            {{ form.school(size=32) }}
+            {{ form.first_name.label }}<br>
+            {{ form.first_name(size=32) }}
         </p>
         <p>
-            {{ form.code.label }}<br>
-            {{ form.code(size=32) }}
+            {{ form.last_name.label }}<br>
+            {{ form.last_name(size=32) }}
+        </p>
+		<p>
+            {{ form.id.label }}<br>
+            {{ form.id(size=32) }}
         </p>
         <p>
             {{ form.latitude.label }}<br>
@@ -33,9 +40,23 @@
             {{ form.longitude.label }}<br>
             {{ form.longitude(size=32) }}
         </p>
+		<p>
+            {{ form.symptoms.label }}<br>
+            {{ form.symptoms(size=80) }}
+        </p>
         <p>{{ form.submit() }}</p>
     </form>
+	
 {% endblock %}
+
+{% with messages = get_flashed_messages() %}
+	{% if messages %}
+		{% for message in messages %}
+			<h5>{{message}}</h5>
+		{% endfor %}
+	{% endif %}
+{% endwith %}
+
 </div>
 </body>
 

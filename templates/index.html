@@ -31,9 +31,8 @@
             {{ table|safe }}
 	{% endfor %}
 	
-	<p><a href="{{ url_for('form') }}">Add a Hospital!</a></p>
-	
-	
+	<p><a href="{{ url_for('form_create') }}">Add a Patient</a></p>	
+	<p><a href="{{ url_for('form_update') }}">Update Patient Results</a></p>	
 </div>
 </body>
 

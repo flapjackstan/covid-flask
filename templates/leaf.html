@@ -29,8 +29,10 @@
 <script>
 
 	//https://stackoverflow.com/questions/37023893/leaflet-js-map-is-not-showing-up
-	//INITIATES LEAFLET MAP
-	var map = L.map('map').setView([40.723894,-73.941561], 13);
+	//INITIATES LEAFLET MAP view([lat, long], 1-12) larger number is closer view
+	// maybe pull centroid position?
+	
+	var map = L.map('map').setView([40.723894,-73.941561], 11);
 	
 	//TILE IS REQUIRED TO FILL IN LEAFLET MAP
 	L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
@@ -43,6 +45,15 @@
 	
 
 </script>
+
+<div class="container">
+
+	{% for table in tables %}
+            {{titles[loop.index]}}
+            {{ table|safe }}
+	{% endfor %}
+
+</div>
 
 </body>
 

@@ -2,6 +2,7 @@ import yaml
 import sqlalchemy
 import pandas as pd
 
+
 # look into this later https://pandas.pydata.org/pandas-docs/stable/development/extending.html
 
     #import mysql.connector
@@ -37,7 +38,7 @@ def df_to_db(keys,df,table_name):
     df.to_sql(table_name, engine, if_exists = 'append', index = False)
         
 
-def query(keys, table, statement):
+def query(keys, table, statement, condition=''):
     
     s=('mysql://{username}:{password}@{host}/{db_name}?charset=utf8'
         '&unix_socket=/cloudsql/{instance_connection_name}'
@@ -46,11 +47,11 @@ def query(keys, table, statement):
     engine = sqlalchemy.create_engine(s, echo=True)
     connection = engine.connect()
     
-    df = pd.read_sql(statement + table, engine)
+    df = pd.read_sql(statement + ' ' + table + ' ' + condition, engine)
     connection.close()
     return df
     
-def CallProcedure(keys, statement):
+def CallProcedure(keys, statement, DDL=False, DQL=False, DML=False):
     
     s=('mysql://{username}:{password}@{host}/{db_name}?charset=utf8'
         '&unix_socket=/cloudsql/{instance_connection_name}'
@@ -59,12 +60,22 @@ def CallProcedure(keys, statement):
     engine = sqlalchemy.create_engine(s, echo=True)
     connection = engine.connect()
     
-    df = pd.read_sql(statement, engine)
-    connection.close()
-    return df
+    if DDL: # CREATE
+        connection.execute(sqlalchemy.text(statement))
+        connection.close()
+        
+    if DML: # MANIPULATE/UPDATE-DELETE
     
+        # SPENT 4 HOURS TRYING TO FIGURE OUT WHY THIS WOULDNT WORK
+        connection.execute(sqlalchemy.text(statement).execution_options(autocommit=True)) 
+        connection.close()
     
-    #how do i test this?????
+    if DQL: # QUERY
+        df = pd.read_sql(statement, engine)
+        connection.close()
+        return df
+    
+
 def insert(keys, table, obj):
    
     s=('mysql://{username}:{password}@{host}/{db_name}?charset=utf8'
