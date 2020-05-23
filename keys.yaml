@@ -1,0 +1,5 @@
+user: [username]
+password: [password]
+host: [host ip]
+database: [db name]
+conn: [instance name]

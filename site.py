@@ -9,7 +9,7 @@ from src.form import PatientForm, UpdateForm
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'you-will-never-guess'
 
-keys_path = '../keys.yaml'
+keys_path = 'keys.yaml'
 keys = getKeys(keys_path)
 
 zip_codes = gpd.read_file('data/spatial/shp/bor_zip_codes.shp')

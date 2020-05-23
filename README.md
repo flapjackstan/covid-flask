@@ -17,8 +17,6 @@ ENSURE YOU HAVE AVAILABLE TABLES IN YOUR DATABASE BEFOREHAND
 
 IF YOU DO NOT PLEASE RUN [COVID_DB PROGRAM](https://github.com/flapjackstan/covid_db)
 
-Run pip install -r requirements.txt
-
 Run python site.py
 
 Errors
